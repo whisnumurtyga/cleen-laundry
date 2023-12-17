@@ -1,101 +1,105 @@
-import React, { useState } from 'react';
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CartScreen from './Screens/CartScreen';
+import { StatusBar, Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import ProfileScreen from './Screens/ProfileScreen';
+import ChatScreen from './Screens/ChatScreen'
+import DriverScreen from './Screens/DriverScreen'
 
-const CLOTHING_ITEMS = [
-  {
-    id: 1,
-    image: require('./images/22.jpg'),
-    name: 'Kaos',
-    price: 2000,
-    quantity: 0, // Initialize quantity
-  },
-  {
-    id: 2,
-    image: require('./images/11.jpg'),
-    name: 'Kemeja',
-    price: 3000,
-    quantity: 0, // Initialize quantity
-  },
-  {
-    id: 3,
-    image: require('./images/3.png'),
-    name: 'Celana',
-    price: 3000,
-    quantity: 0, // Initialize quantity
-  },
-  {
-    id: 4,
-    image: require('./images/4.png'),
-    name: 'Kemeja',
-    price: 3000,
-    quantity: 0, // Initialize quantity
-  },
-  {
-    id: 5,
-    image: require('./images/5.png'),
-    name: 'Kemeja',
-    price: 3000,
-    quantity: 0, // Initialize quantity
-  },
-];
+const Stack = createStackNavigator();
 
-const CartScreen = () => {
-  const [cartItems, setCartItems] = useState(CLOTHING_ITEMS);
-
-  const getTotalPrice = () => cartItems.reduce((sum, item) => {
-    if (item.quantity > 0) {
-      return sum + item.price * item.quantity;
-    } else {
-      return sum;
-    }
-  }, 0);
-
-  const handleRemoveItem = (itemId) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
+const App = () => {
+  const headerStyle = {
+    headerTitleStyle: { color: 'black' },
+    headerTintColor: 'black',
+    headerTitleAlign: 'center', // Center the title
   };
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const renderItem = ({ item }) => (
-    <View style={{ flexDirection: 'row', padding: 10 }}>
-      <Image source={item.image} style={{ width: 50, height: 50 }} />
-      <View style={{ marginLeft: 10 }}>
-        <Text>{item.name}</Text>
-        <Text>Rp {item.price} /item</Text>
-        
-      </View  >
-          <TouchableOpacity onPress={() => handleQuantityChange(item.id, item.quantity - 1)} style={{ marginLeft: 'auto' }}>
-            <Text>-</Text>
-          </TouchableOpacity>
-            <Text style={{ paddingHorizontal: 10 }}>{item.quantity}</Text>
-          <TouchableOpacity onPress={() => handleQuantityChange(item.id, item.quantity + 1)} style={{ marginLeft: 'auto' }}>
-            <Text>+</Text>
-          </TouchableOpacity>
-    </View>
+  const renderBackButton = ({ navigation }) => (
+    <TouchableOpacity
+      style={{ paddingLeft: 10 }}
+      onPress={() => navigation.goBack()}
+    >
+      {/* Replace "Back" text with your image */}
+      <Image source={require('./images/back.png')} style={styles.backImage} />
+    </TouchableOpacity>
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={{ paddingTop: 30, fontSize: 20, fontWeight: 'bold' }}>Keranjang Pakaian</Text>
-      <FlatList
-        data={cartItems}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()} // Ensure key is a string
-      />
-      <View style={{ padding: 10 }}>
-        <Text>Total Harga: Rp {getTotalPrice()}</Text>
-        <TouchableOpacity style={{ backgroundColor: '#2E6B60', padding: 10 }}>
-          <Text style={{ fontSize: 20 ,color: 'white' }}>Schedule</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Cart"
+          component={CartScreen}
+          options={({ navigation }) => ({
+            title: 'Cart',
+            ...headerStyle,
+            headerLeft: () => renderBackButton({ navigation }),
+          })}
+        />
+        {/* Add other screens here */}
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{
+            title: 'Profile Setting',
+            ...headerStyle,
+          }}
+        />
+
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={{
+            headerTitle: () => (
+              <View style={styles.header}>
+                <Image
+                  source={require('./images/Laundry.png')}
+                  style={styles.profileImage}
+                />
+                <Text style={styles.userName}>Time Laundry</Text>
+              </View>
+            ),
+            ...headerStyle,
+          }}
+        />
+
+        <Stack.Screen
+          name="DriverScreen"
+          component={DriverScreen}
+          options={{
+            title: 'Courier',
+            ...headerStyle,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-export default CartScreen;
+const styles = StyleSheet.create({
+  backImage: {
+    width: 20, // Adjust the width as needed
+    height: 20, // Adjust the height as needed
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  
+  },
+  profileImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+  },
+  userName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+});
+
+export default App;
