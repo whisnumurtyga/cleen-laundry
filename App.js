@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Signin, Signup, Welcome } from "./screens";
-import GlobalFont from 'react-native-global-font';
+// import GlobalFont from 'react-native-global-font';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  GlobalFont.applyGlobal('Montserrat-Regular');
+  // GlobalFont.applyGlobal('Montserrat-Regular');
   
   return (
     <NavigationContainer>
