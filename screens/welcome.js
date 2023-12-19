@@ -69,6 +69,9 @@ const Welcome = () => {
 				style={[styles.logoImage, animatedStylesImage]}
 			/>
 			<View style={styles.centeredContainer}>
+				<Text style={styles.whiteText}>Click for Clean</Text>
+			</View>
+			<View style={styles.centeredContainer}>
 				{isLoading && (
 				<View style={styles.loadingBelowLogo}>
 					<ActivityIndicator size={100} color={COLORS.white}  style={styles.loading}/>
@@ -92,44 +95,49 @@ const Welcome = () => {
 };
 
 const styles = StyleSheet.create({
-  bg: {
-    backgroundColor: COLORS.primary,
-    flex: 1,
-  },
-  leenTitle: {
-    top: 290,
-    left: 180,
-    color: COLORS.white,
-    fontSize: 80,
-	transform: [{ translateX: 0 }],
-  },
-  logoImage: {
-    left: 96,
-    top: 187,
-    width: 82,
-    height: 82,
-    resizeMode: 'contain',
-	transform: [{ translateX: 0 }],
-  },
-  centeredContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: 100,
-  },
-  presentedBy: {
-    fontSize: 12,
-    textAlign: 'center',
-    color: COLORS.white,
-  },
-  kelompok: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: COLORS.white,
-  },
-  loading: {
-	top: 100,
-  }
+	whiteText: {
+		color: COLORS.white
+	},
+	bg: {
+		backgroundColor: COLORS.primary,
+		flex: 1,
+	},
+	leenTitle: {
+		top: 290,
+		left: 180,
+		color: COLORS.white,
+		fontSize: 80,
+		transform: [{ translateX: 0 }],
+	},
+	logoImage: {
+		left: 96,
+		top: 187,
+		width: 82,
+		height: 82,
+		resizeMode: 'contain',
+		transform: [{ translateX: 0 }],
+	},
+	centeredContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		top: 100,
+	},
+	presentedBy: {
+		fontSize: 12,
+		textAlign: 'center',
+		color: COLORS.white,
+		bottom: 50,
+	},
+	kelompok: {
+		fontSize: 16,
+		textAlign: 'center',
+		color: COLORS.white,
+		bottom: 50,
+	},
+	loading: {
+		top: 10,
+	}
 });
 
 export default Welcome;
