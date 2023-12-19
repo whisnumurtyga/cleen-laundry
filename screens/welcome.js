@@ -69,7 +69,7 @@ const Welcome = () => {
 				style={[styles.logoImage, animatedStylesImage]}
 			/>
 			<View style={styles.centeredContainer}>
-				<Text style={styles.whiteText}>Click for Clean</Text>
+				<Text style={styles.subTitle}>Click for Clean</Text>
 			</View>
 			<View style={styles.centeredContainer}>
 				{isLoading && (
@@ -95,8 +95,9 @@ const Welcome = () => {
 };
 
 const styles = StyleSheet.create({
-	whiteText: {
-		color: COLORS.white
+	subTitle: {
+		color: COLORS.white,
+		fontSize: 20
 	},
 	bg: {
 		backgroundColor: COLORS.primary,

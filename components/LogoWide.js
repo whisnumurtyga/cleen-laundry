@@ -1,19 +1,11 @@
-import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet, View, Image} from 'react-native';
 import COLORS from '../constants/colors';
-import { LogoWide } from '../components';
 
-
-
-const Signup = ({ navigation }) => {
-    const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
-
+const LogoWide = () => {
     return (
-        <View style={styles.bg}>
-			<LogoWide></LogoWide>
-            {/* <Text style={[styles.leenTitle]}>
+        <View>
+            <Text style={[styles.leenTitle]}>
 				leen
 			</Text>
 			<Image
@@ -22,16 +14,12 @@ const Signup = ({ navigation }) => {
 			/>
 			<View style={styles.centeredContainer}>
 				<Text style={styles.subTitle}>Click for Clean</Text>
-			</View> */}
+			</View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
-    bg: {
-        backgroundColor: COLORS.primary,
-        flex: 1,
-    },
     leenTitle: {
 		top: 80,
 		left: 180,
@@ -57,6 +45,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
         top: -350
     }
-})
+});
 
-export default Signup
+export default LogoWide;
