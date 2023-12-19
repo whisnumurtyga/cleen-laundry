@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, Pressable, Image, StyleSheet } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, Pressable, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/colors';
 import { FilledButton } from '../components';
 import Animated, {
@@ -11,6 +12,9 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const Welcome = () => {
+	const navigation = useNavigation();
+	const [isLoading, setIsLoading] = useState(true);
+
 	const initialOffsetText = StyleSheet.flatten(styles.leenTitle).transform[0].translateX;
 	const initialOffsetImage = StyleSheet.flatten(styles.logoImage).transform[0].translateX;
 	
@@ -35,30 +39,55 @@ const Welcome = () => {
 		withTiming(initialOffsetImage - 200, { duration: 1500 }), // Gerakan gambar ke kanan sejauh 200 satuan
 		withTiming(initialOffsetImage, { duration: 1500 })        // Kembali ke posisi awal gambar
 	  );
-	}, []);
-  
+
+		// Setelah animasi selesai, hentikan loading
+		const animationDuration = 1500; // Sesuaikan dengan durasi animasi sebelumnya
+
+		const animationTimeout = setTimeout(() => {
+			setIsLoading(false);
+		}, animationDuration * 2); // *2 karena dua animasi berjalan secara berurutan
+
+		const timer = setTimeout(() => {
+			navigation.navigate('Signup'); // Navigasi ke layar Signup setelah 2 detik
+		}, 2500);
+		
+		return () => {
+			clearTimeout(animationTimeout);
+			clearTimeout(timer);
+		};
+	}, [navigation]);
   
 
 	return (
-		<View style={styles.bg}>
-		<Animated.Text style={[styles.leenTitle, animatedStylesText]}>
-			leen
-		</Animated.Text>
-		<Animated.Image
-			source={require('../assets/splash/logo.png')}
-			style={[styles.logoImage, animatedStylesImage]}
-		/>
-		<View style={styles.centeredContainer}>
-			<Text style={styles.presentedBy}>presented by</Text>
-			<Text style={styles.kelompok}>Kelompok 6</Text>
-		</View>
-		{/* <FilledButton
-			title="Press me"
-			textColor="#ffffff"
-			buttonColor="#2E6B60"
-			borderColor="#2E6B60"
-		/> */}
-		</View>
+	<View style={styles.bg}>
+		<>
+			<Animated.Text style={[styles.leenTitle, animatedStylesText]}>
+				leen
+			</Animated.Text>
+			<Animated.Image
+				source={require('../assets/splash/logo.png')}
+				style={[styles.logoImage, animatedStylesImage]}
+			/>
+			<View style={styles.centeredContainer}>
+				{isLoading && (
+				<View style={styles.loadingBelowLogo}>
+					<ActivityIndicator size={100} color={COLORS.white}  style={styles.loading}/>
+				</View>
+				)}
+			</View>
+			<View style={styles.centeredContainer}>
+				<Text style={styles.presentedBy}>presented by</Text>
+				<Text style={styles.kelompok}>Kelompok 6</Text>
+			</View>
+			{/* <FilledButton
+				title="Press me"
+				textColor="#ffffff"
+				buttonColor="#2E6B60"
+				borderColor="#2E6B60"
+			/> */}
+		</>
+		  {/* Indikator loading */}
+	</View>
 	);
 };
 
@@ -75,7 +104,7 @@ const styles = StyleSheet.create({
 	transform: [{ translateX: 0 }],
   },
   logoImage: {
-    left: 90,
+    left: 96,
     top: 187,
     width: 82,
     height: 82,
@@ -86,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 260,
+    top: 100,
   },
   presentedBy: {
     fontSize: 12,
@@ -98,6 +127,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: COLORS.white,
   },
+  loading: {
+	top: 100,
+  }
 });
 
 export default Welcome;
