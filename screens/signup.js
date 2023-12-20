@@ -1,18 +1,34 @@
-import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet, Dimensions  } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/colors';
-import { LogoWide } from '../components';
+import { LogoWide, InputA } from '../components';
 
 
+const { height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
+const heightPercentage = 0.8; // 80% dari tinggi layar
 
 const Signup = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
     return (
-        <View style={styles.bg}>
+        <View style={[styles.bg]}>
 			<LogoWide></LogoWide>
+			<View style={styles.centeredContainer}>
+				<Text style={styles.subTitle}>Click for Clean</Text>
+			</View>
+			<View style={[styles.rectangle]}>
+				<View style={styles.inputGroup}>
+					<InputA 
+						iconSource={require('../assets/icon/full-name.png')}
+						placeholder='Full Name'
+					/>
+				</View>
+			</View>
+			<View>
+			</View>
             {/* <Text style={[styles.leenTitle]}>
 				leen
 			</Text>
@@ -28,7 +44,10 @@ const Signup = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    bg: {
+	inputGroup: {
+		top: 100
+	},	
+	bg: {
         backgroundColor: COLORS.primary,
         flex: 1,
     },
@@ -55,8 +74,19 @@ const styles = StyleSheet.create({
         flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-        top: -350
-    }
+
+    },
+	rectangle: {
+		width: screenWidth,
+		height: screenHeight * heightPercentage,
+		top: 20,
+		borderTopLeftRadius: 23,
+		borderTopRightRadius: 23,
+		borderBottomLeftRadius: 0,
+		borderBottomRightRadius: 0,
+		backgroundColor: '#FFF',
+		marginBottom: 0, // Adjust to properly stack above the main content
+	}
 })
 
 export default Signup

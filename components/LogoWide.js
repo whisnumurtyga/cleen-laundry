@@ -5,13 +5,15 @@ import COLORS from '../constants/colors';
 const LogoWide = () => {
     return (
         <View>
-            <Text style={[styles.leenTitle]}>
-				leen
-			</Text>
-			<Image
-				source={require('../assets/splash/logo.png')}
-				style={[styles.logoImage]}
-			/>
+			<View>
+				<Text style={[styles.leenTitle]}>
+					leen
+				</Text>
+				<Image
+					source={require('../assets/splash/logo.png')}
+					style={[styles.logoImage]}
+				/>
+			</View>
 			<View style={styles.centeredContainer}>
 				<Text style={styles.subTitle}>Click for Clean</Text>
 			</View>
