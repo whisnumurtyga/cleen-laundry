@@ -8,9 +8,9 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import COLORS from '../constants/colors';
-import {LogoWide, InputA, FilledButton} from '../components';
+import {LogoWide, InputA, FilledButton, ButtonUnderline} from '../components';
 import {Tabs, Tab} from 'native-base';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -22,6 +22,8 @@ const Signup = ({navigation}) => {
     const [isChecked, setIsChecked] = useState(false);
     const [activeTab, setActiveTab] = useState(0); // Untuk melacak tab yang aktif
     const [isSignUpActive, setIsSignUpActive] = useState(true); // Defaultnya Sign Up aktif
+    const [isSignInActive, setIsSignInActive] = useState(true);
+
 
 	return (
         <View style={[styles.bg]}>
@@ -63,14 +65,16 @@ const Signup = ({navigation}) => {
                         </>
                     )}
                 </View>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setIsSignUpActive(!isSignUpActive)}
-                >
-                    <Text style={styles.buttonText}>
-                        {isSignUpActive ? 'Sign In' : 'Sign Up'}
-                    </Text>
-                </TouchableOpacity>
+            <View style={{ top: 20 }}>
+                <View style={[styles.buttonContainer, isSignUpActive ? { top: -100 } : null]}>
+                    <TouchableOpacity onPress={() => setIsSignUpActive(!isSignUpActive)}>
+                        <ButtonUnderline style={[styles.buttonU]} opa={ isSignUpActive ? 1 : 0.5} text={"Sign Up"}></ButtonUnderline>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setIsSignUpActive(!isSignUpActive)}>
+                        <ButtonUnderline style={[styles.buttonU]} opa={ isSignUpActive ? 0.5 : 1} text={"Sign In"}></ButtonUnderline>
+                    </TouchableOpacity>
+                </View>
+            </View>
 			<View style={styles.bottomCenteredContainer}>
 				<FilledButton
 					textColor={COLORS.white}
@@ -85,6 +89,12 @@ const Signup = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
+    buttonContainer: {
+        flexDirection: 'row',
+    },
+    buttonU: {
+        top: 0
+    },
     inputContainer: {
         flexDirection: 'column', // Menyusun elemen secara vertikal
         alignItems: 'center', // Mengatur posisi secara vertikal di tengah
