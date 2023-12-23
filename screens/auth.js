@@ -23,24 +23,26 @@ const signUp = async (userData) => {
 };
 
 // Fungsi untuk login
-const login = async (email, password) => {
+const signIn = async (userData) => {
+	console.log(userData)
     try {
       // Mendapatkan data user dari AsyncStorage
-      const existingUsers = await AsyncStorage.getItem('users');
-      if (existingUsers !== null) {
-        const users = JSON.parse(existingUsers);
-  
-        // Cek apakah ada user dengan email yang cocok
-        const user = users.find((u) => u.email === email);
-  
-        if (user && user.password === password) {
-          return { success: true, message: 'Login successful', user };
-        }
-      }
-      return { success: false, message: 'Invalid email or password' };
-    } catch (error) {
-      return { success: false, message: 'Login failed' };
-    }
+		const existingUsers = await AsyncStorage.getItem('users');
+		if (existingUsers !== null) {
+			const users = JSON.parse(existingUsers);
+			console.log(users)
+
+
+		const user = users.find((u) => u.email == userData.email);
+		console.log("=> USER", user)
+		if (user && user.password === userData.password) {
+			return { success: true, message: 'Login successful', user };
+		}
+			return { success: false, message: 'Invalid email or password' };
+		} 
+	} catch (error) {
+		return { success: false, message: 'Login failed' };
+	}
   };
 
-export { signUp, login };
+export { signUp, signIn };

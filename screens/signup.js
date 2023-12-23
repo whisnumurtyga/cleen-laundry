@@ -18,7 +18,7 @@ const {width: screenWidth} = Dimensions.get('window');
 const heightPercentage = 0.8; // 80% dari tinggi layar
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { signUp } from './auth';
+import { signUp, signIn } from './auth';
 
 
 const Signup = ({navigation}) => {
@@ -82,19 +82,50 @@ const Signup = ({navigation}) => {
 
     const handleSignIn = async () => {
         console.log('Sign in')
-        try {
-            const keys = await AsyncStorage.getAllKeys();
-            const users = await AsyncStorage.multiGet(keys);
-        
-            console.log('All Users:', users);
-            // Tampilkan informasi pengguna dalam format yang sesuai dengan strukturnya
-            users.forEach((user, index) => {
-              console.log(`User ${index + 1}:`, user);
-            });
-        } catch (error) {
-            console.error('Error retrieving data:', error);
+        // Validasi data sebelum melakukan sign up (bisa ditambahkan)
+        // Misalnya, pastikan semua field terisi dengan benar sebelum melakukan sign up
+        if (!email || !password) {
+            // Jika ada field yang kosong, tampilkan pesan atau lakukan sesuatu
+            console.log('Harap isi semua field');
+            console.log('email:', email);
+            console.log('password:', password);
+            return; // Berhenti menjalankan fungsi jika ada field yang kosong
         }
+        
+        const userData = {
+            email,
+            password,
+        };
+
+        // Panggil fungsi signUp dari auth.js
+        const signInResponse = await signIn(userData);
+
+        if (signInResponse.success) {
+        // Sign up berhasil, lakukan sesuatu
+            console.log('Sign in successful');
+            console.log('User Data:', userData);
+        // Redirect atau lakukan sesuatu setelah sign up berhasil
+        } else {
+        // Sign up gagal, tampilkan pesan kesalahan atau lakukan sesuatu
+            console.log(signInResponse.message);
+        }
+        console.log('Sign in');
     }
+
+    // const debugAllUser = async () => {
+    //     try {
+    //         const keys = await AsyncStorage.getAllKeys();
+    //         const users = await AsyncStorage.multiGet(keys);
+        
+    //         console.log('All Users:', users);
+    //         // Tampilkan informasi pengguna dalam format yang sesuai dengan strukturnya
+    //         users.forEach((user, index) => {
+    //           console.log(`User ${index + 1}:`, user);
+    //         });
+    //     } catch (error) {
+    //         console.error('Error retrieving data:', error);
+    //     }
+    // }
 
 	return (
         <View style={[styles.bg]}>
@@ -138,10 +169,13 @@ const Signup = ({navigation}) => {
                             <InputA
                                 iconSource={require('../assets/icon/email.png')}
                                 placeholder='Email'
+                                onChangeText= {handleEmail}
                             />
                             <InputA
                                 iconSource={require('../assets/icon/password.png')}
                                 placeholder='Password'
+                                isPassword={true}
+                                onChangeText={handlePassword}
                             />
                         </>
                     )}
