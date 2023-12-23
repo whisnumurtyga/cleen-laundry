@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { TextInput, StyleSheet, View, Text, Image } from 'react-native';
 
-const InputA = ({ iconSource, placeholder }) => {
+const InputA = ({ iconSource, placeholder, isPassword = false, keyBoardType = 'default', onChangeText}) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const handleFocus = () => {
@@ -30,6 +30,9 @@ return (
                         // ...props lainnya yang ingin kamu tambahkan
                         onFocus={handleFocus}
                         onBlur={handleBlur}
+                        secureTextEntry={isPassword}
+                        keyboardType={keyBoardType}
+                        onChangeText={onChangeText} // Gunakan prop onChangeText yang diteruskan
                     />
                 </View>
             </View>

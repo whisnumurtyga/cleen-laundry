@@ -12,6 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const Welcome = () => {
+	
 	const navigation = useNavigation();
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -56,6 +57,8 @@ const Welcome = () => {
 			clearTimeout(timer);
 		};
 	}, [navigation]);
+
+	
   
 
 	return (

@@ -6,24 +6,95 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    ToastAndroid, 
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import COLORS from '../constants/colors';
 import {LogoWide, InputA, FilledButton, ButtonUnderline} from '../components';
-import {Tabs, Tab} from 'native-base';
 
 const {height: screenHeight} = Dimensions.get('window');
 const {width: screenWidth} = Dimensions.get('window');
 const heightPercentage = 0.8; // 80% dari tinggi layar
 
-const Signup = ({navigation}) => {
-    const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
-    const [activeTab, setActiveTab] = useState(0); // Untuk melacak tab yang aktif
-    const [isSignUpActive, setIsSignUpActive] = useState(true); // Defaultnya Sign Up aktif
-    const [isSignInActive, setIsSignInActive] = useState(true);
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { signUp } from './auth';
 
+
+const Signup = ({navigation}) => {
+    const [isSignUpActive, setIsSignUpActive] = useState(true); // Defaultnya Sign Up aktif
+
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleFullNameChange = (text) => {
+        setFullName(text);
+    };
+    const handleEmail = (text) => {
+        setEmail(text);
+    };
+    const handlePhoneNumber= (text) => {
+        setPhoneNumber(text);
+    };
+    const handlePassword = (text) => {
+        setPassword(text);
+    };
+
+
+
+    
+    const handleSignUp = async () => {
+        // Validasi data sebelum melakukan sign up (bisa ditambahkan)
+        // Misalnya, pastikan semua field terisi dengan benar sebelum melakukan sign up
+        if (!fullName || !email || !phoneNumber || !password) {
+            // Jika ada field yang kosong, tampilkan pesan atau lakukan sesuatu
+            console.log('Harap isi semua field');
+            console.log('fullName:', fullName);
+            console.log('email:', email);
+            console.log('phoneNumber:', phoneNumber);
+            console.log('password:', password);
+            return; // Berhenti menjalankan fungsi jika ada field yang kosong
+        }
+        
+        const userData = {
+            fullName,
+            email,
+            phoneNumber,
+            password,
+        };
+
+        // Panggil fungsi signUp dari auth.js
+        const signUpResponse = await signUp(userData);
+
+        if (signUpResponse.success) {
+        // Sign up berhasil, lakukan sesuatu
+            console.log('Sign up successful');
+            console.log('User Data:', userData);
+        // Redirect atau lakukan sesuatu setelah sign up berhasil
+        } else {
+        // Sign up gagal, tampilkan pesan kesalahan atau lakukan sesuatu
+            console.log('Sign up failed');
+        }
+        console.log('Sign up');
+    };
+
+    const handleSignIn = async () => {
+        console.log('Sign in')
+        try {
+            const keys = await AsyncStorage.getAllKeys();
+            const users = await AsyncStorage.multiGet(keys);
+        
+            console.log('All Users:', users);
+            // Tampilkan informasi pengguna dalam format yang sesuai dengan strukturnya
+            users.forEach((user, index) => {
+              console.log(`User ${index + 1}:`, user);
+            });
+        } catch (error) {
+            console.error('Error retrieving data:', error);
+        }
+    }
 
 	return (
         <View style={[styles.bg]}>
@@ -38,18 +109,28 @@ const Signup = ({navigation}) => {
                             <InputA
                                 iconSource={require('../assets/icon/full-name.png')}
                                 placeholder='Full Name'
+                                value={fullName}
+                                onChangeText={handleFullNameChange}
                             />
                             <InputA
                                 iconSource={require('../assets/icon/email.png')}
                                 placeholder='Email'
+                                value={email}
+                                onChangeText= {handleEmail}
                             />
                             <InputA
                                 iconSource={require('../assets/icon/phone-number.png')}
                                 placeholder='Phone Number'
+                                keyBoardType={'numeric'}
+                                value={phoneNumber}
+                                onChangeText={handlePhoneNumber}
                             />
                             <InputA
                                 iconSource={require('../assets/icon/password.png')}
                                 placeholder='Password'
+                                isPassword={true}
+                                value={password}
+                                onChangeText={handlePassword}
                             />
                         </>
                     ) : (
@@ -65,7 +146,7 @@ const Signup = ({navigation}) => {
                         </>
                     )}
                 </View>
-            <View style={{ top: 20 }}>
+            <View style={{ top: 30 }}>
                 <View style={[styles.buttonContainer, isSignUpActive ? { top: -100 } : null]}>
                     <TouchableOpacity onPress={() => setIsSignUpActive(!isSignUpActive)}>
                         <ButtonUnderline style={[styles.buttonU]} opa={ isSignUpActive ? 1 : 0.5} text={"Sign Up"}></ButtonUnderline>
@@ -81,6 +162,9 @@ const Signup = ({navigation}) => {
 					buttonColor={"#2E6B60"}
 					borderColor={"#2E6B60"}
 					title={isSignUpActive ? ("Sign Up") : ("Sign In")}
+                    onPress={isSignUpActive ? handleSignUp : handleSignIn}
+                    // onPress = {() => console.log('ok')}
+                    // handleButtonPress={isSignUpActive ? {handleSignUp} : null}
 				/>
 			</View>
 			</View>

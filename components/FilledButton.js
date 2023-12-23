@@ -1,24 +1,34 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const FilledButton = ({ textColor, buttonColor, borderColor, title }) => {
-    const handleButtonPress = () => {
-        console.log('Button Pressed');
-        // Lakukan aksi lain yang diinginkan saat tombol ditekan di sini
-    };
+const showToast = (message) => {
+  ToastAndroid.showWithGravityAndOffset(
+    message,
+    ToastAndroid.LONG,
+    ToastAndroid.BOTTOM,
+    25,
+    50
+  );
+};
+
+const FilledButton = ({ textColor, buttonColor, borderColor, title, onPress }) => {
+  const handleButtonPress = () => {
+    onPress(); // Memanggil fungsi yang diterima sebagai prop onPress
+  };
 
     return (
-        <TouchableOpacity onPress={handleButtonPress}
-        style={[
-            styles.button,
-            { backgroundColor: buttonColor, borderColor: borderColor },
-        ]}
+        <TouchableOpacity 
+          style={[
+              styles.button,
+              { backgroundColor: buttonColor, borderColor: borderColor },
+          ]}
+          onPress = {handleButtonPress}
         >
         <Text style={{ color: textColor }}>{title}</Text>
         </TouchableOpacity>
     );
 };
-
+  
 FilledButton.defaultProps = {
   textColor: '#ffffff', // default font color
   buttonColor: '#2E6B60', // default button color
@@ -36,5 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+
 
 export default FilledButton;
