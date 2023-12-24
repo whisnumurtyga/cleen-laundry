@@ -32,13 +32,17 @@ const signIn = async (userData) => {
         const users = JSON.parse(existingUsers);
         console.log(users)
 
+        const user = users.find((u) => u.email == userData.email);
+        console.log("=> USER", user)
+        console.log("=> USER DATA", userData)
+        if (user && user.password === userData.password) {
+          console.log(user.password === userData.password)
+          // Update properti isSignIn pada objek user yang ditemukan
+          user.isSignIn = true;
 
-      const user = users.find((u) => u.email == userData.email);
-      console.log("=> USER", user)
-      console.log("=> USER DATA", userData)
-      if (user && user.password === userData.password) {
-        console.log(user.password === userData.password)
-        return { success: true, message: 'Login successful', user };
+          // Simpan kembali data yang sudah diperbarui ke AsyncStorage
+          await AsyncStorage.setItem('users', JSON.stringify(users));          
+          return { success: true, message: 'Login successful', user };
       }
         return { success: false, message: 'Invalid email or password' };
       } 

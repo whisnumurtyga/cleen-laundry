@@ -23,6 +23,7 @@ import { signUp, signIn } from './auth';
 
 
 const Signup = ({navigation}) => {
+    // const [currentUser, setCurrentUser] = useState(null);
     const [isSignUpActive, setIsSignUpActive] = useState(true); // Defaultnya Sign Up aktif
 
     const [fullName, setFullName] = useState('');
@@ -64,6 +65,7 @@ const Signup = ({navigation}) => {
             email,
             phoneNumber,
             password,
+            isSignIn: false,
         };
 
         // Panggil fungsi signUp dari auth.js
@@ -96,16 +98,21 @@ const Signup = ({navigation}) => {
         const userData = {
             email,
             password,
+            isSignIn: true,
         };
 
         // Panggil fungsi signUp dari auth.js
         const signInResponse = await signIn(userData);
 
         if (signInResponse.success) {
-        // Sign up berhasil, lakukan sesuatu
-            console.log('Sign in successful');
-            console.log('User Data:', userData);
-            navigation.navigate('Home');
+            try {
+                await AsyncStorage.setItem('userData', JSON.stringify(userData));
+                console.log('Sign in successful');
+                console.log('User Data:', userData);
+                navigation.navigate('Home', { userData });
+            } catch (error) {
+                console.error('Error saving user data:', error);
+            }
         // Redirect atau lakukan sesuatu setelah sign up berhasil
         } else {
         // Sign up gagal, tampilkan pesan kesalahan atau lakukan sesuatu

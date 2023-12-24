@@ -10,6 +10,8 @@ import Animated, {
 	withRepeat,
 	withSequence
 } from 'react-native-reanimated';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Welcome = () => {
 	
@@ -29,8 +31,32 @@ const Welcome = () => {
 	const animatedStylesImage = useAnimatedStyle(() => ({
 	  transform: [{ translateX: offsetImage.value }], // Menggunakan nilai negatif agar bergerak ke arah yang berlawanan
 	}));
+
+	const checkSignInStatus = async () => {
+		try {
+			const userData = await AsyncStorage.getItem('users');
+			console.log(userData)
+			if (userData !== null) {
+				const usersData = JSON.parse(userData);
+				const signedInUser = usersData.find(user => user.isSignIn == true);
+				console.log(signedInUser)
+				if (signedInUser) {
+					navigation.replace('Home', { userData: signedInUser.userData });
+				} else {
+					navigation.replace('Signup');
+				}
+			} else {
+				navigation.replace('Signup');
+			}
+		} catch (error) {
+			console.error('Error checking sign-in status:', error);
+			navigation.replace('Signup');
+		}
+	};
   
 	React.useEffect(() => {
+		checkSignInStatus();
+
 	  offsetText.value = withSequence(
 		withTiming(initialOffsetText + 200, { duration: 1500 }), // Gerakan teks ke kiri sejauh 200 satuan
 		withTiming(initialOffsetText, { duration: 1500 })        // Kembali ke posisi awal teks
