@@ -6,10 +6,12 @@
         "address" : "",
         "rating" : "",
         "short_description" : "",
+        "long_description" : "",
         "testimonials" : {
             "id": "1",
-            "name": "Vir Sirajh"
-            "rating" : ""
+            "name": "Vir Sirajh",
+            "rating" : 5,
+            "description" : "Amazing"
         }
     }
 }
