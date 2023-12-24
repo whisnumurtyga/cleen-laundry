@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { signUp, signIn } from './auth';
 
 
+
 const Signup = ({navigation}) => {
     const [isSignUpActive, setIsSignUpActive] = useState(true); // Defaultnya Sign Up aktif
 
@@ -104,6 +105,7 @@ const Signup = ({navigation}) => {
         // Sign up berhasil, lakukan sesuatu
             console.log('Sign in successful');
             console.log('User Data:', userData);
+            navigation.navigate('Home');
         // Redirect atau lakukan sesuatu setelah sign up berhasil
         } else {
         // Sign up gagal, tampilkan pesan kesalahan atau lakukan sesuatu

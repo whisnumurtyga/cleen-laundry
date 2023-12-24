@@ -27,22 +27,24 @@ const signIn = async (userData) => {
 	console.log(userData)
     try {
       // Mendapatkan data user dari AsyncStorage
-		const existingUsers = await AsyncStorage.getItem('users');
-		if (existingUsers !== null) {
-			const users = JSON.parse(existingUsers);
-			console.log(users)
+      const existingUsers = await AsyncStorage.getItem('users');
+      if (existingUsers !== null) {
+        const users = JSON.parse(existingUsers);
+        console.log(users)
 
 
-		const user = users.find((u) => u.email == userData.email);
-		console.log("=> USER", user)
-		if (user && user.password === userData.password) {
-			return { success: true, message: 'Login successful', user };
-		}
-			return { success: false, message: 'Invalid email or password' };
-		} 
-	} catch (error) {
-		return { success: false, message: 'Login failed' };
-	}
+      const user = users.find((u) => u.email == userData.email);
+      console.log("=> USER", user)
+      console.log("=> USER DATA", userData)
+      if (user && user.password === userData.password) {
+        console.log(user.password === userData.password)
+        return { success: true, message: 'Login successful', user };
+      }
+        return { success: false, message: 'Invalid email or password' };
+      } 
+    } catch (error) {
+      return { success: false, message: 'Login failed' };
+    }
   };
 
 export { signUp, signIn };

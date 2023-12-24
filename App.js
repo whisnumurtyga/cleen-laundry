@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
-import {Signin, Signup, Welcome} from "./screens";
+import {Signin, Signup, Welcome, Home} from "./screens";
 import {NativeBaseProvider, Box} from "native-base";
 // import { ToastProvider } from '@react-native-toast-message';
 
@@ -34,6 +34,12 @@ export default function App() {
                     <Stack.Screen
                         name="Signup"
                         component={Signup}
+                        options={{
+                            headerShown: false
+                        }}/>
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
                         options={{
                             headerShown: false
                         }}/>
