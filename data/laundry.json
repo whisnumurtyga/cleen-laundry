@@ -1,0 +1,15 @@
+{
+    "laundries" : {
+        "id" : "1",
+        "name" : "Time Laundry",
+        "image_path" : "",
+        "address" : "",
+        "rating" : "",
+        "short_description" : "",
+        "testimonials" : {
+            "id": "1",
+            "name": "Vir Sirajh"
+            "rating" : ""
+        }
+    }
+}
