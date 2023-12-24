@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Image , TouchableOpacity} from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, FlatList } from "react-native";
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
@@ -7,10 +7,11 @@ const ChatScreen = () => {
 
   const handleSendMessage = () => {
     const newMessage = {
+      id: messages.length.toString(), // Unique identifier for each message
       text: message,
       sender: "Anda",
+      timestamp: new Date().toLocaleTimeString(),
     };
-
 
     setMessages([...messages, newMessage]);
     setMessage("");
@@ -18,26 +19,25 @@ const ChatScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.messageList}>
-        {messages.map((message) => (
-          <View key={message.id} style={styles.message}>
-            <Text style={styles.messageText}>{message.text}</Text>
-            <Text style={styles.messageTime}>{message.timestamp}</Text>
+      <FlatList
+        data={messages}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.message}>
+            <Text style={styles.messageText}>{item.text}</Text>
+            <Text style={styles.messageTime}>{item.timestamp}</Text>
           </View>
-        ))}
-      </View>
+        )}
+      />
+
       <View style={styles.messageInput}>
         <TextInput
           style={styles.messageInputField}
           value={message}
-          onChangeText={(event) => setMessage(event.target.value)}
+          onChangeText={(text) => setMessage(text)}
           placeholder="Ketik pesan..."
         />
-        <Button
-          title="Send"
-          onPress={handleSendMessage}
-          style={styles.messageButton}
-        />
+        <Button title="Send" onPress={handleSendMessage} />
       </View>
     </View>
   );
@@ -47,23 +47,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-  },
-  userName: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginLeft: 10,
   },
   messageList: {
     flex: 1,
@@ -95,13 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 5,
     padding: 10,
-  },
-  messageButton: {
-    marginLeft: 10,
-    backgroundColor: "#2E6B60", // Change the background color here
-    borderRadius: 5,
-    padding: 10,
-    color : "white",
   },
 });
 

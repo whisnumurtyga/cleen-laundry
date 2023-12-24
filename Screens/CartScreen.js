@@ -28,14 +28,14 @@ const CartScreen = ({ navigation }) => {
     {
       id: 4,
       image: require('../images/4.png'),
-      name: 'Kemeja',
+      name: 'jacket',
       price: 3000,
       quantity: 0, // Initialize quantity
     },
     {
       id: 5,
       image: require('../images/5.png'),
-      name: 'Kemeja',
+      name: 'Jaz',
       price: 3000,
       quantity: 0, // Initialize quantity
     },
