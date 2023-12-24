@@ -11,7 +11,7 @@ const PlaceDetailsMap = () => {
       try {
         // You can replace this with your own logic to fetch place details
         const response = await fetch(
-          'https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,formatted_address,geometry&key=AIzaSyCp3akDr9MGokBqo3XepisDoBz6xKE62Hk'
+          'https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,formatted_address,geometry&key=YOUR api KEy'
         );
 
         const data = await response.json();
