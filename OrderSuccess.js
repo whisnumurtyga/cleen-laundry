@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Schedule from './Schedule';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
+import { calculateTotalCost } from './Schedule'; // Impor fungsi calculateTotalCost dari Schedule
 
-const OrderSuccessScreen = () => {
+
+
+const OrderSuccessScreen = ({ route }) => {
+  const { paymentMethod, totalAmount } = route.params;
   const getCurrentDateTime = () => {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -16,6 +22,7 @@ const OrderSuccessScreen = () => {
   const [transactionCode, setTransactionCode] = useState('');
   const [isImageVisible, setImageVisible] = useState(false);
 
+  
   useEffect(() => {
     const code = generateTransactionCode();
     setTransactionCode(code);
@@ -46,11 +53,11 @@ const OrderSuccessScreen = () => {
       <View style={styles.infoContainer}>
         <View style={styles.infoText}>
           <Text style={styles.infoLabel}>Nominal:</Text>
-          <Text style={styles.infoValue}>Rp 104.000</Text>
+          <Text style={styles.infoValue}>{totalAmount}</Text>
         </View>
         <View style={styles.infoText}>
           <Text style={styles.infoLabel}>Payment Method:</Text>
-          <Text style={styles.infoValue}>Metode Pembayaran Anda</Text>
+          <Text style={styles.infoValue}>{paymentMethod}</Text>
         </View>
         <View style={styles.infoText}>
           <Text style={styles.infoLabel}>Transaction Code:</Text>
@@ -63,6 +70,7 @@ const OrderSuccessScreen = () => {
       </TouchableOpacity>
     </View>
   );
+  
 };
 
 const styles = StyleSheet.create({
