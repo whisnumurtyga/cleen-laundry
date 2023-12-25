@@ -1,0 +1,4 @@
+<key>NSLocationAlwaysUsageDescription</key>
+<string>Alasan penggunaan lokasi sepanjang waktu</string>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>Alasan penggunaan lokasi sepanjang waktu dan ketika aplikasi sedang digunakan</string>
