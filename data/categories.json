@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "category_name": "Dry Clean",
+      "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/categories/dry-clean.png"
+    },
+    {
+      "id": "2",
+      "category_name": "Iron",
+      "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/categories/iron.png"
+    },
+    {
+      "id": "3",
+      "category_name": "Wash",
+      "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/categories/wash.png"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+    "laundry_items": [
+        {
+            "id": "1",
+            "item_name": "Kaos",
+            "price_per_item": 3000,
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry_items/kaos.png"
+        },
+        {
+            "id": "2",
+            "item_name": "Kemeja",
+            "price_per_item": 5000,
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry_items/kemeja.png"
+        },
+        {
+            "id": "3",
+            "item_name": "Celana",
+            "price_per_item": 10000,
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry_items/celana.png"
+        },
+        {
+            "id": "4",
+            "item_name": "Jaket",
+            "price_per_item": 15000,
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry_items/jaket.png"
+        },
+        {
+            "id": "5",
+            "item_name": "Blazer",
+            "price_per_item": 25000,
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry_items/blazer.png"
+        }
+    ]
+}
