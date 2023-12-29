@@ -1,0 +1,184 @@
+{
+    "laundries": [
+        {
+            "id": "1",
+            "name": "Time Laundry",
+            "rating": "4.5",
+            "original_link" : "https://maps.app.goo.gl/SaEZcrGb9Uki45u49",
+            "address": "Jl. Ketintang Baru III No.52 B, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/time-laundry.png",
+            "short_description": "Professional laundry service",
+            "long_description": "Time Laundry provides professional laundry services with a focus on quality and customer satisfaction. Our experienced team ensures your clothes are handled with care and returned fresh and clean.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "Vir Sirajh",
+                    "rating": 5,
+                    "description": "Amazing"
+                },
+                {
+                    "id": "2",
+                    "name": "Eva Johnson",
+                    "rating": 4,
+                    "description": "Great service!"
+                },
+                {
+                    "id": "3",
+                    "name": "Alex Lee",
+                    "rating": 4,
+                    "description": "Very satisfied"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Surya Laundry",
+            "rating": "4.2",
+            "original_link" : "https://maps.app.goo.gl/tWb71F7H4HrPyWFSA",
+            "address": "Jl. Ketintang Baru IV No.31B, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/surya-laundry.png",
+            "short_description": "Reliable laundry solutions",
+            "long_description": "CleanMax Laundry offers reliable laundry solutions catering to all your clothing needs. Our efficient services guarantee a hassle-free experience and clean, fresh clothes every time.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "John Doe",
+                    "rating": 5,
+                    "description": "Excellent job"
+                },
+                {
+                    "id": "2",
+                    "name": "Sarah Williams",
+                    "rating": 4,
+                    "description": "Impressed with their work"
+                },
+                {
+                    "id": "3",
+                    "name": "Emma Brown",
+                    "rating": 3,
+                    "description": "Good experience"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Nadine Laundry",
+            "rating": "4.8",
+            "original_link" : "https://maps.app.goo.gl/9RM3yxVUmhjKNiA59",
+            "address": "Jl. Ketintang Wiyata No No.200 Q, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/nadine-laundry.png",
+            "short_description": "Premium laundry service",
+            "long_description": "Sparkle Wash offers premium laundry services known for their attention to detail and commitment to excellence. Our cutting-edge facilities and dedicated staff ensure your clothes receive the best treatment.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "Sophie Miller",
+                    "rating": 5,
+                    "description": "Outstanding service"
+                },
+                {
+                    "id": "2",
+                    "name": "David Wilson",
+                    "rating": 4,
+                    "description": "Highly recommended"
+                },
+                {
+                    "id": "3",
+                    "name": "Olivia Brown",
+                    "rating": 4,
+                    "description": "Satisfied customer"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "name": "Nabilal Laundry",
+            "rating": "4.6",
+            "original_link" : "https://maps.app.goo.gl/kE8mqNdjjrnxAkSg6",
+            "address": "Jl. Ketintang Baru XVIII No.4, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/nabilal-laundry.png",
+            "short_description": "Environmentally-friendly laundry",
+            "long_description": "GreenWave Laundry specializes in environmentally-friendly laundry solutions, ensuring your clothes are cleaned using eco-friendly practices without compromising on quality.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "Noah Clark",
+                    "rating": 5,
+                    "description": "Great eco-friendly service"
+                },
+                {
+                    "id": "2",
+                    "name": "Ava Williams",
+                    "rating": 4,
+                    "description": "Impressed with their green approach"
+                },
+                {
+                    "id": "3",
+                    "name": "Liam Brown",
+                    "rating": 4,
+                    "description": "Happy with the eco-conscious service"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "name": "Ye Laundry",
+            "rating": "4.3",
+            "original_link" : "https://maps.app.goo.gl/bnGzkKVAtC9qqwhP7",
+            "address": "Jl. Ketintang Tengah IV No.9, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/ye-laundry.png",
+            "short_description": "Refreshing laundry experience",
+            "long_description": "FreshStart Laundry offers a refreshing laundry experience, providing a blend of convenience and quality that ensures your clothes are cleaned to perfection.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "Mia Parker",
+                    "rating": 5,
+                    "description": "Refreshing service"
+                },
+                {
+                    "id": "2",
+                    "name": "Ethan White",
+                    "rating": 4,
+                    "description": "Great experience overall"
+                },
+                {
+                    "id": "3",
+                    "name": "Grace Taylor",
+                    "rating": 4,
+                    "description": "Pleased with the service"
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "name": "Teras Laundry",
+            "rating": "4.7",
+            "original_link" : "https://maps.app.goo.gl/SmY8cKjoJzT3L3EU7",
+            "address": "Jl. Ketintang 1 No.7, Wonokromo, Kec. Wonokromo, Surabaya, Jawa Timur 60243",
+            "image_path": "https://github.com/whisnumurtyga/cleen-laundry/blob/whisnu/data/assets/laundry/teras-laundry.png",
+            "short_description": "Exceptional care for your clothes",
+            "long_description": "EliteCare Laundry is dedicated to providing exceptional care for your clothes. Our expert team ensures your garments receive the utmost attention and care in every wash.",
+            "testimonials": [
+                {
+                    "id": "1",
+                    "name": "Lucas Anderson",
+                    "rating": 5,
+                    "description": "Exceptional care"
+                },
+                {
+                    "id": "2",
+                    "name": "Chloe Martin",
+                    "rating": 4,
+                    "description": "Impressed with their service"
+                },
+                {
+                    "id": "3",
+                    "name": "Emily Brown",
+                    "rating": 4,
+                    "description": "Great care for clothes"
+                }
+            ]
+        }
+    ]
+}
